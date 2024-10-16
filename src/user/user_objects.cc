@@ -1951,6 +1951,8 @@ mjCJoint& mjCJoint::operator=(const mjCJoint& other) {
     this->spec = other.spec;
     *static_cast<mjCJoint_*>(this) = static_cast<const mjCJoint_&>(other);
     *static_cast<mjsJoint*>(this) = static_cast<const mjsJoint&>(other);
+    qposadr_ = -1;
+    dofadr_ = -1;
   }
   PointToLocal();
   return *this;
@@ -6400,8 +6402,8 @@ void mjCSensor::Compile(void) {
     }
 
     // height fields are not necessarily convex and are not yet supported
-    if (static_cast<mjCGeom*>(obj)->Type() == mjGEOM_HFIELD ||
-        static_cast<mjCGeom*>(ref)->Type() == mjGEOM_HFIELD) {
+    if ((objtype == mjOBJ_GEOM && static_cast<mjCGeom*>(obj)->Type() == mjGEOM_HFIELD) ||
+        (reftype == mjOBJ_GEOM && static_cast<mjCGeom*>(ref)->Type() == mjGEOM_HFIELD)) {
       throw mjCError(this, "height fields are not supported in geom distance sensors");
     }
 
