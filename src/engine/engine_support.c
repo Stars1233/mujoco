@@ -42,8 +42,8 @@
 
 //-------------------------- Constants -------------------------------------------------------------
 
- #define mjVERSION 323
-#define mjVERSIONSTRING "3.2.3"
+ #define mjVERSION 325
+#define mjVERSIONSTRING "3.2.5"
 
 // names of disable flags
 const char* mjDISABLESTRING[mjNDISABLE] = {
